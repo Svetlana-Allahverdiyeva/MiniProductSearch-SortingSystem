@@ -35,23 +35,29 @@ def showProducts():
 def sortByPriceAsc():
     try:
         products = loadProducts()
-        
+
         if not products:
             print("No products available!")
             return
-        
-        sortByPriceAsc = sorted(products, key=lambda product: product["price"])
 
-        for product in sortByPriceAsc:
+        n = len(products)
 
+# Bubble Sort - ascending order
+
+        for i in range(n - 1):
+            for j in range(n - i - 1):
+                if products[j]["price"] > products[j + 1]["price"]:
+                    products[j], products[j + 1] = products[j + 1], products[j]
+
+        for product in products:
             print(f"""
             ID: {product['id']}
             Name: {product['name']}
             Price: {product['price']} AZN
             """)
 
-    except (KeyError, TypeError) as error:
-        print(f"Error: {error}")
+    except (KeyError, TypeError, ValueError) as error:
+        print(f"Error: {error}")   
 
 # Azalan sira ile...
 
@@ -63,48 +69,48 @@ def sortByPriceDesc():
             print("No products available!")
             return
 
-        sortedProductsDesc = sorted(products, key=lambda product: product["price"], reverse=True)
+        n = len(products)
 
-        for product in sortedProductsDesc:
+# Bubble Sort - descending order
 
+        for i in range(n - 1):
+            for j in range(n - i - 1):
+                if products[j]["price"] < products[j + 1]["price"]:
+                    products[j], products[j + 1] = products[j + 1], products[j]
+
+        for product in products:
             print(f"""
             ID: {product['id']}
             Name: {product['name']}
             Price: {product['price']} AZN
             """)
 
-    except (KeyError, TypeError) as error:
-        print(f"Error: {error}")
-
+    except (KeyError, TypeError, ValueError) as error:
+        print(f"Error: {error}")    
 
 def searchByName():
     try:
         products = loadProducts()
-        
+
         if not products:
             print("No products available!")
             return
 
-        searchName = input("Enter product name: ").lower()
-
-        foundProducts = []
+        productName = input("Enter product name: ").lower()
 
         for product in products:
-            if searchName in product["name"].lower():
-                foundProducts.append(product)
-
-        if foundProducts:
-            for product in foundProducts:
-
+            if product["name"].lower() == productName:
                 print(f"""
+                Product Found!
+
                 ID: {product['id']}
                 Name: {product['name']}
                 Price: {product['price']} AZN
-                """) 
+                """)
+                return
 
-        else:
-            print("Product not found!")
-    
+        print("Product not found!")
+
     except (KeyError, TypeError, ValueError) as error:
         print(f"Error: {error}")
 
@@ -119,17 +125,33 @@ def searchById():
 
         productId = int(input("Enter product ID: "))
 
-        for product in products:
-            if product["id"] == productId:
-                
+# Binary Search requires sorted data
+
+        products.sort(key=lambda product: product["id"])
+
+        left = 0
+        right = len(products) - 1
+
+        while left <= right:
+            mid = (left + right) // 2
+
+            if products[mid]["id"] == productId:
                 print(f"""
-                ID: {product['id']}
-                Name: {product['name']}
-                Price: {product['price']} AZN
+                Product Found!
+
+                ID: {products[mid]['id']}
+                Name: {products[mid]['name']}
+                Price: {products[mid]['price']} AZN
                 """)
-                break
-        else:
-                print("Product not found!")
+                return
+
+            elif products[mid]["id"] < productId:
+                left = mid + 1
+
+            else:
+                right = mid - 1
+
+        print("Product not found!")
 
     except (ValueError, KeyError, TypeError) as error:
         print(f"Error: {error}")

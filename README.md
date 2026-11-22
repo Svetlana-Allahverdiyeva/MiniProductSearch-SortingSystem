@@ -1,23 +1,10 @@
 # 🛒 Mini Product Search and Sorting System
 
-A console-based Python project for managing, searching, and sorting products using JSON.
+A Python-based mini product management system that stores product data in JSON and performs searching and sorting operations.
 
-## 📌 Description
+---
 
-This project is a mini product management system that allows users to view, search, and sort products. Product data is stored in a JSON file, and the system operates through a simple console menu.
-
-## ✨ Features
-
-- Show all products
-- Sort products by price (ascending)
-- Sort products by price (descending)
-- Search products by name
-- Search products by ID
-- Find the cheapest product
-- Find the most expensive product
-- Exception handling using `try-except`
-
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```text
 Mini-Product-System/
@@ -28,63 +15,113 @@ Mini-Product-System/
 └── README.md
 ```
 
-## 🛠 Technologies Used
+---
+
+## 📦 Product Data
+
+Product information is stored in `products.json`.
+
+Each product contains the following fields:
+
+- **ID** – Unique product identifier
+- **Name** – Product name
+- **Price** – Product price
+
+The project contains 15 different products.
+
+---
+
+## ✨ Features
+
+- Display all products
+- Sort products by price (ascending)
+- Sort products by price (descending)
+- Search products by name
+- Search products by ID
+- Find the cheapest product
+- Find the most expensive product
+
+---
+
+## 🔍 Searching Algorithms
+
+### Linear Search
+
+Used to search for products by name.
+
+- Checks elements one by one.
+- Stops when the product is found.
+- **Time Complexity:** `O(n)`
+
+### Binary Search
+
+Used to search for products by ID.
+
+- Requires sorted data.
+- Divides the search interval into halves.
+- **Time Complexity:** `O(log n)`
+
+---
+
+## 🔄 Sorting Algorithm
+
+### Bubble Sort
+
+Used to sort products according to their prices.
+
+- Ascending order
+- Descending order
+- Compares adjacent elements
+- Swaps elements when necessary
+
+**Time Complexity:**
+
+| Case | Complexity |
+|---|---|
+| Best Case | O(n²) |
+| Average Case | O(n²) |
+| Worst Case | O(n²) |
+
+---
+
+## 🏆 Product Analysis
+
+- `min()` – Finds the cheapest product.
+- `max()` – Finds the most expensive product.
+
+---
+
+## 🛠️ Technologies
 
 - Python
 - JSON
 - Git
 - GitHub
 
+---
+
 ## ▶️ How to Run
 
-1. Clone the repository:
+Clone the repository:
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/Svetlana-Allahverdiyeva/MiniProductSearch-SortingSystem.git
 ```
 
-2. Navigate to the project folder:
+Navigate to the project directory:
 
 ```bash
-cd Mini-Product-System
+cd MiniProductSearch-SortingSystem
 ```
 
-3. Run the program:
+Run the program:
 
 ```bash
 python main.py
 ```
 
-## 📋 Menu
+---
 
-```text
-================================
-     MINI PRODUCT SYSTEM
-================================
+## 🎯 Project Purpose
 
-1. Show all products
-2. Sort by price ascending
-3. Sort by price descending
-4. Search product by name
-5. Search product by ID
-6. Find cheapest product
-7. Find most expensive product
-
-0. Exit
-
-================================
-```
-
-## 📚 Learning Outcomes
-
-Through this project, I practiced:
-
-- Reading data from JSON files
-- Working with lists and dictionaries
-- Writing and calling functions
-- Modular programming and imports
-- Searching and sorting algorithms
-- Using `lambda`, `sorted()`, `min()` and `max()`
-- Exception handling with `try-except`
-- Git version control
-- GitHub commits and pushes
+This project demonstrates the use of Python functions, JSON file handling, modular programming, searching algorithms, sorting algorithms, and version control using Git.
