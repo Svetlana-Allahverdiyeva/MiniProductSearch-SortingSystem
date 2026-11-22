@@ -76,6 +76,7 @@ def sortByPriceDesc():
     except (KeyError, TypeError) as error:
         print(f"Error: {error}")
 
+
 def searchByName():
     try:
         products = loadProducts()
@@ -105,4 +106,72 @@ def searchByName():
             print("Product not found!")
     
     except (KeyError, TypeError, ValueError) as error:
-        print(f"Error: {error}")   
+        print(f"Error: {error}")
+
+
+def searchById():
+    try:
+        products = loadProducts()
+
+        if not products:
+            print("No products available!")
+            return
+
+        productId = int(input("Enter product ID: "))
+
+        for product in products:
+            if product["id"] == productId:
+                
+                print(f"""
+                ID: {product['id']}
+                Name: {product['name']}
+                Price: {product['price']} AZN
+                """)
+                break
+        else:
+                print("Product not found!")
+
+    except (ValueError, KeyError, TypeError) as error:
+        print(f"Error: {error}")
+
+# En ucuz...
+def getCheapestProduct():
+    try:
+        products = loadProducts()
+
+        if not products:
+            print("No products available!")
+            return
+
+        cheapestProduct = min(products, key=lambda product: product["price"])
+
+        print(f"""
+        Cheapest Product:
+        ID: {cheapestProduct['id']}
+        Name: {cheapestProduct['name']}
+        Price: {cheapestProduct['price']} AZN
+        """)
+
+    except (KeyError, TypeError, ValueError) as error:
+        print(f"Error: {error}")
+
+# En bahali...
+def getExpensiveProduct():
+    try:
+        products = loadProducts()
+
+        if not products:
+            print("No products available!")
+            return
+
+        expensiveProduct = max(products, key=lambda product: product["price"])
+
+        print(f"""
+        Most Expensive Product:
+        ID: {expensiveProduct['id']}
+        Name: {expensiveProduct['name']}
+        Price: {expensiveProduct['price']} AZN
+        """)
+
+    except (KeyError, TypeError, ValueError) as error:
+        print(f"Error: {error}")
